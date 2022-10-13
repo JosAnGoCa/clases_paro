@@ -71,6 +71,33 @@ public class SimpleLinkedList<T> {
         }
     }
 
+    public void reverseListWhile() {
+        Node<T> prev = null;
+        Node<T> curr = head;
+        while (curr != null) {
+            Node<T> next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        head = prev;
+    }
+
+    public void reverseListRecursion(){
+        reverseListRecursion(head);
+    }
+
+    private void reverseListRecursion(Node<T> curr) {
+        if (curr.next == null) {
+            head = curr;
+            return;
+        }
+        reverseListRecursion(curr.next);
+        Node<T> aux = curr.next;
+        aux.next = curr;
+        curr.next = null;
+    }
+
     public String toString(){
         String resultado = "";
         Node<T> current = head;
