@@ -4,7 +4,9 @@ Repositorio creado para compartir el codigo hecho a lo largo de las clases que h
 
 ## Programas hechos:
 
-- [Main](./src/Main.java)
-- [SimpleLinkedList](./src/SimpleLinkedList.java)
+-   [Main](./src/Main.java)
+-   [SimpleLinkedList](./src/SimpleLinkedList.java)
+-   [DoubleLinkedList](./src/DoubleLinkedList.java)
+
 
 \- JosAnGoCa
