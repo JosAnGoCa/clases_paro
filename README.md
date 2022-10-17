@@ -7,6 +7,8 @@ Repositorio creado para compartir el codigo hecho a lo largo de las clases que h
 -   [Main](./src/Main.java)
 -   [SimpleLinkedList](./src/SimpleLinkedList.java)
 -   [DoubleLinkedList](./src/DoubleLinkedList.java)
-
+-   [StackArr](./src/StackArr.java)
+-   [StackList](./src/StackList.java)
+-   [QueueArr](./src/QueueArr.java)
 
 \- JosAnGoCa
