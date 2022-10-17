@@ -10,5 +10,7 @@ Repositorio creado para compartir el codigo hecho a lo largo de las clases que h
 -   [StackArr](./src/StackArr.java)
 -   [StackList](./src/StackList.java)
 -   [QueueArr](./src/QueueArr.java)
+-   [QueueList](./src/QueueList.java)
+-   [BinarySearchTree](./src/BinarySearchTree.java)
 
 \- JosAnGoCa
