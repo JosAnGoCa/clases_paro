@@ -21,13 +21,16 @@ public class QueueList<T> {
         }
     }
 
-    public void dequeue(){
+    public T dequeue(){
         if(!empty()) {
+            T aux = head.value;
             head = head.next;
             if (head == null) {
                 tail = null;
             }
+            return aux;
         }
+        return null;
     }
 
     public String toString(){
