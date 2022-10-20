@@ -146,4 +146,63 @@ public class BinarySearchTree<T extends Comparable<T>> {
         }
         return findMaxRecursive(curr.right);
     }
+
+    public boolean findBucle(T valueToSearch) {
+        Node<T> curr = root;
+        while (curr != null) {
+            int comparable = valueToSearch.compareTo(curr.value);
+            if ( comparable == 0 )  return true;
+            else if ( comparable < 0 ) curr = curr.left;
+            else if ( comparable > 0 ) curr = curr.right;
+        }
+        return false;
+    }
+
+    public boolean findRecursive(T valueToSearch) {
+        return findRecursive(valueToSearch, root);
+    }
+
+    private boolean findRecursive(T valueToSearch, Node<T> curr) {
+        if ( curr == null ) return false;
+
+        int comparable = valueToSearch.compareTo(curr.value);
+        if( comparable == 0 ) return true;
+        else if ( comparable < 0 ) return findRecursive(valueToSearch, curr.left);
+        else if ( comparable > 0 ) return findRecursive(valueToSearch, curr.right);
+        return false;
+    }
+
+    public void deleteNode(T valueToDelete) {
+        root = deleteNode(root, valueToDelete);
+    }
+
+    public Node<T> deleteNode(Node<T> curr, T valueToDelete) {
+        if ( curr == null ) return curr;
+
+        int comparable = valueToDelete.compareTo(curr.value);
+        if ( comparable < 0 ) curr.left = deleteNode(curr.left, valueToDelete);
+        else if ( comparable > 0 ) curr.right = deleteNode(curr.right, valueToDelete);
+        else if ( comparable == 0 ) {
+            // 0 hijos
+            if(curr.right == null && curr.left == null) {
+                curr = null;
+            }
+            // 1 hijo
+            // el hijo esta a la izquierda
+            else if (curr.right == null && curr.left != null) {
+                curr = curr.left;
+            }
+            // el hijo esta a la derecha
+            else if (curr.right != null && curr.left == null) {
+                curr = curr.right;
+            }
+            // 2 hijos
+            else {
+                Node<T> aux = findMaxBucle(curr.left);
+                curr.value = aux.value;
+                curr.right = deleteNode(curr.right, aux.value);
+            }
+        }
+        return curr;
+    }
 }
