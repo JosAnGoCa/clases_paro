@@ -158,6 +158,17 @@ public class BinarySearchTree<T extends Comparable<T>> {
         return false;
     }
 
+    private Node<T> findNodeBucle(T valueToSearch) {
+        Node<T> curr = root;
+        while (curr != null) {
+            int comparable = valueToSearch.compareTo(curr.value);
+            if ( comparable == 0 )  return curr;
+            else if ( comparable < 0 ) curr = curr.left;
+            else if ( comparable > 0 ) curr = curr.right;
+        }
+        return null;
+    }
+
     public boolean findRecursive(T valueToSearch) {
         return findRecursive(valueToSearch, root);
     }
@@ -204,5 +215,54 @@ public class BinarySearchTree<T extends Comparable<T>> {
             }
         }
         return curr;
+    }
+
+    public int findHeight() {
+        return findHeight(root);
+    }
+
+    private int findHeight(Node<T> curr) {
+        if(curr == null) return 0;
+        int heightLeft = findHeight(curr.left);
+        int heightRight = findHeight(curr.right);
+
+        return Math.max(heightLeft, heightRight) + 1;
+    }
+
+    public T getSuccessor(T currentValue) {
+        Node<T> currentNode = findNodeBucle(currentValue);
+        if(currentNode == null) return null;
+
+        if(currentNode.right != null) return findMinBucle(currentNode.right).value;
+        else {
+            Node<T> prev = root;
+            Node<T> successor = null;
+            while (prev != currentNode) {
+                int compare = prev.value.compareTo(currentNode.value);
+                if (compare > 0) {
+                    successor = prev;
+                    prev = prev.left;
+                } else {
+                    prev = prev.right;
+                }
+            }
+            if (successor == null) return null;
+            return successor.value;
+        }
+    }
+
+    public boolean isBST(T max_value, T min_value) {
+        return isBST(root, max_value, min_value);
+    }
+ 
+    private boolean isBST(Node<T> curr, T max_value, T min_value) {
+        if(curr == null) return true;
+
+        int compareMax = curr.value.compareTo(max_value);
+        int compareMin = curr.value.compareTo(min_value);
+        if(compareMax < 0 && compareMin > 0
+            && isBST(curr.right, max_value, curr.value)
+            && isBST(curr.left, curr.value, min_value)) return true;
+        else return false;
     }
 }
