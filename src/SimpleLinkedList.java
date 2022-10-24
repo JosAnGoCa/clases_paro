@@ -49,6 +49,17 @@ public class SimpleLinkedList<T> {
         return false;
     }
 
+    public void update(T valueToUpdate, T valeToReplace) {
+        Node<T> current = head;
+        while (current != null) {
+            if (valueToUpdate.equals(current.value)){
+                current.value = valeToReplace;
+                return;
+            }
+            current = current.next;
+        }
+    }
+
     public void searchAndDelete(T valueToDelete) {
         if (!has(valueToDelete))
             return;
