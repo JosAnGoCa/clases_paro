@@ -77,7 +77,9 @@ public class HastableSC<K, V> {
     }
 
     public void insert(K key, V value) {
-        // RESIZE
+        if(size >= thereshold) {
+            resize();
+        }
         Entry entrada = new Entry(key, value);
         int indice = normalizeIndex(entrada.hash);
         if (table[indice] == null) {
@@ -90,6 +92,66 @@ public class HastableSC<K, V> {
             } else {
                 table[indice].addFirst(entrada);
                 size++;
+            }
+        }
+    }
+
+    public boolean hasKey(K keyToSearch) {
+        int bucketIndex = normalizeIndex(keyToSearch.hashCode());
+        for (Entry element: table[bucketIndex]) {
+            if ((element.hash == keyToSearch.hashCode())
+                    && keyToSearch.equals(element.key)) return true;
+        }
+        return false;
+    }
+
+    public V get(K keyToSearch) {
+        int bucketIndex = normalizeIndex(keyToSearch.hashCode());
+        for (Entry element: table[bucketIndex]) {
+            if ((element.hash == keyToSearch.hashCode())
+                    && keyToSearch.equals(element.key)) return element.value;
+        }
+        return null;
+    }
+
+    public void remove(K keyToRemove) {
+        Entry aux = new Entry(keyToRemove, null);
+        if(hasKey(keyToRemove)) {
+            int bucketIndex = normalizeIndex(aux.hash);
+            table[bucketIndex].searchAndDelete(aux);
+            size--;
+        }
+    }
+
+    public SimpleLinkedList<K> keys() {
+        SimpleLinkedList<K> listOfKeys = new SimpleLinkedList<>();
+        for (SimpleLinkedList<Entry> bucket: table)
+            if (bucket != null)
+                for (Entry element: bucket)
+                    listOfKeys.addFirst(element.key);
+        return listOfKeys;
+    }
+
+    public SimpleLinkedList<V> values() {
+        SimpleLinkedList<V> listOfValues = new SimpleLinkedList<>();
+        for (SimpleLinkedList<Entry> bucket: table)
+            if (bucket != null)
+                for (Entry element: bucket)
+                    listOfValues.addFirst(element.value);
+        return listOfValues;
+    }
+
+    private void resize() {
+        capacity = capacity*2;
+        thereshold = (int)(capacity * maxLoadFactor);
+        SimpleLinkedList<Entry>[] oldTable = table;
+        table = new SimpleLinkedList[capacity];
+        size = 0;
+        for (SimpleLinkedList<Entry> bucket: oldTable) {
+            if (bucket != null){
+                for (Entry element: bucket) {
+                    insert(element.key, element.value);
+                }
             }
         }
     }

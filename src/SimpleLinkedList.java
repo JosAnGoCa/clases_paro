@@ -1,4 +1,6 @@
-public class SimpleLinkedList<T> {
+import java.util.Iterator;
+
+public class SimpleLinkedList<T> implements Iterable<T> {
     private class Node<T> {
         public T value;
         public Node<T> next;
@@ -118,5 +120,23 @@ public class SimpleLinkedList<T> {
         }
         resultado += "null";
         return resultado;
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new Iterator<T>() {
+            Node<T> current = head;
+            @Override
+            public boolean hasNext() {
+                return current != null;
+            }
+
+            @Override
+            public T next() {
+                T value = current.value;
+                current = current.next;
+                return value;
+            }
+        };
     }
 }
