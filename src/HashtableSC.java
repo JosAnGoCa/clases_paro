@@ -47,11 +47,7 @@ public class HastableSC<K, V> {
         } else {
             this.maxLoadFactor = Double.max(DEFAULT_LOAD_FACTOR, maxLoadFactor);
         }
-        if(capacity < 3) {
-            this.capacity = DEFAULT_CAPACITY;
-        } else {
-            this.capacity = Integer.max(DEFAULT_CAPACITY, capacity);
-        }
+        this.capacity = Integer.max(DEFAULT_CAPACITY, capacity);
         thereshold = (int) (maxLoadFactor * capacity);
         table = new SimpleLinkedList[capacity];
     }
@@ -66,8 +62,8 @@ public class HastableSC<K, V> {
     }
 
     public void clear() {
-        for(SimpleLinkedList<Entry> lista: table) {
-            lista = null;
+        for(SimpleLinkedList<Entry> bucket: table) {
+            bucket = null;
         }
         size = 0;
     }
