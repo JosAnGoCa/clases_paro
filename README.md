@@ -12,5 +12,7 @@ Repositorio creado para compartir el codigo hecho a lo largo de las clases que h
 -   [QueueArr](./src/QueueArr.java)
 -   [QueueList](./src/QueueList.java)
 -   [BinarySearchTree](./src/BinarySearchTree.java)
+-   [HasTableSC](./src/HashtableSC.java)
+-   [HasTableOA](./src/HashtableOA.java)
 
 \- JosAnGoCa

@@ -1,29 +1,38 @@
 public class Main {
     public static void main(String[] args) {
-        HastableSC<String, String> coloresFavoritos = new HastableSC<>();
+        HashtableOA<String, String> coloresFavoritos = new HashtableOA<>();
+        System.out.println("Inserta Andrea");
         coloresFavoritos.insert("Andrea", "Rojo / Rosa");
+        System.out.println(coloresFavoritos.size());
+        System.out.println("Inserta Irene");
         coloresFavoritos.insert("Irene", "Morado");
-        System.out.println("Se redimenciono");
+        System.out.println(coloresFavoritos.size());
+        System.out.println("Inserta Gabo");
         coloresFavoritos.insert("Gabo", "Verde");
+        System.out.println(coloresFavoritos.size());
+        System.out.println("Inserta Camila");
         coloresFavoritos.insert("Camila", "Morado");
-        System.out.println("Se redimenciono");
+        System.out.println(coloresFavoritos.size());
+        System.out.println("Inserta Didier");
         coloresFavoritos.insert("Didier", "Negro");
-        coloresFavoritos.insert("Sebas", "Morado");
-        coloresFavoritos.insert("Andrea", "Rojo");
-        coloresFavoritos.insert("Luis", "Negro");
+        System.out.println(coloresFavoritos.size());
+
+        System.out.println("Elimina a Gabo");
+        coloresFavoritos.remove("Gabo");
+        System.out.println(coloresFavoritos.size());
+
+
+        System.out.println("Inserta Belem");
         coloresFavoritos.insert("Belem", "Amarillo");
+        System.out.println(coloresFavoritos.size());
 
+        System.out.println("Actualiza Belem");
+        coloresFavoritos.insert("Belem", "Amarillo");
+        System.out.println(coloresFavoritos.size());
 
-        System.out.println("Color favorito de Andrea: " + coloresFavoritos.get("Andrea"));
-        System.out.println("Color favorito de Irene: " + coloresFavoritos.get("Irene"));
-        System.out.println("Color favorito de Didier: " + coloresFavoritos.get("Didier"));
-        System.out.println("Color favorito de Luis: " + coloresFavoritos.get("Luis"));
-        System.out.println("Color favorito de Gabo: " + coloresFavoritos.get("Gabo"));
-        System.out.println("Color favorito de Jose: " + coloresFavoritos.get("Jose"));
-
-
-        coloresFavoritos.remove("Andrea");
-
-
+        SimpleLinkedList<String> keys = coloresFavoritos.keys();
+        for (String key: keys) {
+            System.out.println(key);
+        }
     }
 }

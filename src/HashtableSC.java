@@ -1,6 +1,4 @@
-import java.util.Objects;
-
-public class HastableSC<K, V> {
+public class HashtableSC<K, V> {
     private class Entry {
         public K key;
         public int hash;
@@ -29,19 +27,19 @@ public class HastableSC<K, V> {
     private int thereshold;
     private SimpleLinkedList<Entry>[] table;
 
-    public HastableSC() {
+    public HashtableSC() {
         this(DEFAULT_LOAD_FACTOR, DEFAULT_CAPACITY);
     }
 
-    public HastableSC(double maxLoadFactor) {
+    public HashtableSC(double maxLoadFactor) {
         this(maxLoadFactor, DEFAULT_CAPACITY);
     }
 
-    public HastableSC(int capacity) {
+    public HashtableSC(int capacity) {
         this(DEFAULT_LOAD_FACTOR, capacity);
     }
 
-    public HastableSC(double maxLoadFactor, int capacity) {
+    public HashtableSC(double maxLoadFactor, int capacity) {
         if(maxLoadFactor >= 1 && maxLoadFactor > 0) {
             this.maxLoadFactor = DEFAULT_LOAD_FACTOR;
         } else {
